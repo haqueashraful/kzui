@@ -1,0 +1,13 @@
+.kzui-sidebar ul>h4 {
+    color: #A7AAAD;
+    padding: 6px 8px 4px 8px;
+    font-size: 18px;
+    font-weight: 400;
+    text-align: left;
+}
+
+
+
+.kzui-sidebar ul li:nth-child(3){
+    color: black;
+}

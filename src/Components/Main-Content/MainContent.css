@@ -1,0 +1,383 @@
+/* Header */
+.kzui-mcp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+    color: #333;
+    box-sizing: border-box;
+    border-top: 1px solid rgb(221, 221, 223);
+    border-bottom: 1px solid rgb(221, 221, 223);
+}
+
+.kzui-mcp-header ul {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.kzui-mcp-header ul li {
+    cursor: pointer;
+}
+
+.kzui-mcp-header ul li:nth-child(1) {
+    color: #000000;
+}
+
+.kzui-mcp-search input {
+    padding: 8px 12px;
+    box-sizing: border-box;
+    border: 1px solid rgb(221, 221, 223);
+    border-radius: 6px;
+    background: rgb(255, 255, 255);
+}
+
+input:focus {
+    outline: none;
+}
+
+/* Table Container */
+.color-table-container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.color-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.color-table th,
+.color-table td {
+    padding: 10px;
+    text-align: left;
+}
+
+.color-table-row {
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+/* Initially hide move button, checkbox, and three-dot button */
+.table-cell .move-button,
+.table-cell .cell-checkbox,
+.actions .three-dot-button {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Show move button, checkbox, and three-dot button on hover */
+.color-table-row:hover .table-cell .move-button,
+.color-table-row:hover .table-cell .cell-checkbox,
+.color-table-row:hover .actions .three-dot-button {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Ensure checkbox remains visible when checked */
+.cell-checkbox:checked {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Styling for table cells */
+.table-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cell-checkbox {
+    margin-right: 10px;
+}
+
+.move-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 5px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.move-button:hover {
+    color: #156bed;
+}
+
+.color-input-div {
+    display: flex;
+}
+
+.color-input input {
+    width: 50px;
+    border: none;
+    border-radius: 4px;
+}
+
+/* Three-dot button */
+.three-dot-button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.three-dot-button:hover {
+    color: #156bed;
+}
+
+/* Popup menu */
+.popup-menu {
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 10;
+    width: 120px;
+    border-radius: 4px;
+}
+
+.popup-option {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.popup-option:hover {
+    background-color: #f5f5f5;
+}
+
+.actions {
+    position: relative;
+}
+
+/* Drawer Styles (renamed) */
+.kzui-mcp-drawer {
+    position: absolute;
+    top: 0;
+    right: 30%;
+    width: 350px;
+    height: 500px;
+    background-color: #fff;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    transform: translateX(100%); /* Initially off-screen */
+}
+
+.kzui-mcp-drawer-open {
+    transform: translateX(0); /* Show drawer */
+}
+
+.kzui-mcp-drawer-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.kzui-mcp-drawer-input {
+    padding: 20px;
+}
+
+.kzui-mcp-drawer-input > div {
+    padding: 10px 0;
+    border-bottom: 2px solid #ccc;
+}
+
+.kzui-mcp-drawer-title input[type="text"] {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.kzui-mcp-color-input-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.kzui-mcp-drawer-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin-top: 20px;
+    border-top: 2px solid #ccc;
+}
+
+.kzui-mcp-drawer-actions button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.kzui-mcp-drawer-actions button:first-child {
+    background-color: #f5f5f5;
+}
+
+.kzui-mcp-drawer-actions button:last-child {
+    background-color: #333;
+    color: white;
+}
+
+/* Add Button */
+.add-new-item {
+    background: none;
+    border: none;
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+
+/* MainContent.css */
+
+.drawer {
+    position: fixed;
+    top: 0;
+    right: -400px; /* Hide it off the screen initially */
+    width: 400px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+    transition: right 0.3s ease; /* Smooth slide-in effect */
+    z-index: 1000;
+}
+
+.drawer.open {
+    right: 0; /* Slide in */
+}
+
+.drawer-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.drawer h2 {
+    margin-bottom: 20px;
+}
+
+.drawer input[type="text"] {
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.drawer input[type="color"] {
+    padding: 5px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+}
+
+.drawer-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.drawer-actions button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.drawer-actions button:hover {
+    background-color: #0056b3;
+}
+
+.drawer-actions button:last-child {
+    background-color: #6c757d;
+}
+
+.drawer-actions button:last-child:hover {
+    background-color: #5a6268;
+}
+
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); /* Dim background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+/* Modal Content */
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal Title */
+.modal-content h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+/* Modal Input Field */
+.modal-content input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Modal Actions (Buttons) */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Modal Action Buttons */
+.modal-actions button {
+    padding: 8px 16px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* Cancel Button */
+.modal-actions button:first-child {
+    background-color: #f5f5f5;
+}
+
+/* Save Button */
+.modal-actions button:last-child {
+    background-color: #156BED;
+    color: white;
+}
+
+.modal-actions button:last-child:hover {
+    background-color: #104bb5;
+}
