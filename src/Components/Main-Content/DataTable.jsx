@@ -102,13 +102,20 @@ const DataTable = () => {
     };
 
     const handleSaveGroupName = () => {
+
+        console.log(editingGroup, groupedItems);
+
+
         const updatedGroups = groupedItems.map(group =>
-            group.id === editingGroup.id ? { ...group, title: editingGroup.title } : group
+            group.id === editingGroup.index ? { ...group, title: editingGroup.title } : group
         );
         setGroupedItems(updatedGroups);
         setShowGroupModal(false);
         setShowGroupPopup(null);
     };
+
+
+
 
     const handleDuplicateGroup = (groupId) => {
         const groupToDuplicate = groupedItems.find(group => group.id === groupId);
@@ -130,82 +137,97 @@ const DataTable = () => {
     };
 
     return (
-        <div className="color-table-container">
-            <table className="color-table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map((item, index) => (
-                        <tr key={item.id} className="color-table-row">
-                            <td>
-                                <div className="table-cell">
-                                    <button
-                                        className="move-button"
-                                        onClick={() => moveRow(index, index - 1)}
-                                    >
-                                        ⬆
-                                    </button>
-                                    <button
-                                        className="move-button"
-                                        onClick={() => moveRow(index, index + 1)}
-                                    >
-                                        ⬇
-                                    </button>
-                                    <input
-                                        type="checkbox"
-                                        checked={checkedItems.includes(item.id)}
-                                        onChange={() => handleCheckboxChange(item.id)}
-                                        className="cell-checkbox"
-                                    />
-                                    {item.title}
-                                </div>
-                            </td>
-                            <td>
-                                <div className="table-cell">
-                                    {item.color}
-                                    <button
-                                        className="three-dot-button"
-                                        onClick={() => handleItemThreeDotClick(index)}
-                                    >
-                                        &#8230;
-                                    </button>
-                                    {showItemPopup === index && (
-                                        <div className="popup-menu">
-                                            <div className="popup-option" onClick={() => handleEdit(index)}>Edit</div>
-                                            <div className="popup-option" onClick={() => handleDuplicate(index)}>Duplicate</div>
-                                            <div className="popup-option" onClick={() => handleDelete(index)}>Delete</div>
-                                        </div>
-                                    )}
-                                </div>
-                            </td>
+        <div >
+            <div className="color-table-container">
+                <table className="color-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Value</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {data.map((item, index) => (
+                            <tr key={item.id} className="color-table-row">
+                                <td>
+                                    <div className="table-cell">
+                                        <button
+                                            className="move-button"
+                                            onClick={() => moveRow(index, index - 1)}
+                                        >
+                                            ⬆
+                                        </button>
+                                        <button
+                                            className="move-button"
+                                            onClick={() => moveRow(index, index + 1)}
+                                        >
+                                            ⬇
+                                        </button>
+                                        <input
+                                            type="checkbox"
+                                            checked={checkedItems.includes(item.id)}
+                                            onChange={() => handleCheckboxChange(item.id)}
+                                            className="cell-checkbox"
+                                        />
+                                        {item.title}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className="table-cell">
+                                        <input type="color" value={item.color} />
+                                        <input type="text" value={item.color} />
+                                        {/* {item.color} */}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className="table-cell">
+                                        <button
+                                            className="three-dot-button-main"
+                                            onClick={() => handleItemThreeDotClick(index)}
+                                        >
+                                            &#8285;
+                                        </button>
+                                        {showItemPopup === index && (
+                                            <div className="popup-menu">
+                                                <div className="popup-option" onClick={() => handleEdit(index)}>Edit</div>
+                                                <div className="popup-option" onClick={() => handleDuplicate(index)}>Duplicate</div>
+                                                <div className="popup-option" onClick={() => handleDelete(index)}>Delete</div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
 
-            {/* Drawer for editing items */}
-            <div className={`drawer right ${showDrawer ? 'open' : ''}`}>
-                <div className="drawer-content">
-                    <input
-                        type="text"
-                        value={editingItem?.title || ''}
-                        onChange={(e) => setEditingItem({ ...editingItem, title: e.target.value })}
-                    />
-                    <input
-                        type="color"
-                        value={editingItem?.color || '#000000'}
-                        onChange={(e) => setEditingItem({ ...editingItem, color: e.target.value })}
-                    />
-                    <div className="drawer-actions">
-                        <button onClick={handleSave}>Save</button>
-                        <button onClick={() => setShowDrawer(false)}>Cancel</button>
+
+                {/* Drawer for editing items */}
+                <div className={`drawer right ${showDrawer ? 'open' : ''}`}>
+                    <div className="drawer-content">
+                        <input
+                            type="text"
+                            value={editingItem?.title || ''}
+                            onChange={(e) => setEditingItem({ ...editingItem, title: e.target.value, id: editingItem.length + 1 })}
+                        />
+                        <div>
+                            <input
+                                type="color"
+                                value={editingItem?.color || '#000000'}
+                                onChange={(e) => setEditingItem({ ...editingItem, color: e.target.value })}
+                            />
+                            <input type="text" value={editingItem?.color || '#000000'} />
+                        </div>
+                        <div className="drawer-actions">
+                            <button onClick={handleSave}>Save</button>
+                            <button onClick={() => setShowDrawer(false)}>Cancel</button>
+                        </div>
                     </div>
                 </div>
+
             </div>
+
+
 
             {/* Drawer for adding new items */}
             <div className={`drawer right ${showAddDrawer ? 'open' : ''}`}>
@@ -239,7 +261,7 @@ const DataTable = () => {
                                     className="three-dot-button"
                                     onClick={() => handleGroupThreeDotClick(group.id)}
                                 >
-                                    &#8230;
+                                    &#8285;
                                 </button>
                                 {showGroupPopup === group.id && (
                                     <div className="popup-menu">
@@ -249,15 +271,34 @@ const DataTable = () => {
                                     </div>
                                 )}
                             </div>
-                            <ul className="group-items">
-                                {group.items.map((item) => (
-                                    <li key={item.id}>{item.title}</li>
-                                ))}
-                            </ul>
+                            <table className="group-table">
+                                <thead>
+                                    <tr>
+                                        <th className="group-table-cell">Name</th>
+                                        <th className="group-table-cell">Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {group.items.map(item => (
+                                        <tr key={item.id}>
+                                            <td className="group-table-cell">
+                                                <span>{item.title}</span>
+                                            </td>
+                                            <td className="group-table-cell">
+                                                <div>
+                                                    <input type="color" value={item.color} readOnly />
+                                                    <input type="text" value={item.color} readOnly className="color-input" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                         </div>
                     ))}
                 </div>
             )}
+
 
             {/* Modal for editing group name */}
             {showGroupModal && (
@@ -284,7 +325,7 @@ const DataTable = () => {
                 </div>
             )}
 
-            <button onClick={handleAddNewItem}>Add New Item</button>
+            <button className='add-new-item' onClick={handleAddNewItem}>+ Add color</button>
         </div>
     );
 };

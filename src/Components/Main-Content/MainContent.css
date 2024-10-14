@@ -62,7 +62,7 @@ input:focus {
 /* Initially hide move button, checkbox, and three-dot button */
 .table-cell .move-button,
 .table-cell .cell-checkbox,
-.actions .three-dot-button {
+.table-cell .three-dot-button-main {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -71,7 +71,7 @@ input:focus {
 /* Show move button, checkbox, and three-dot button on hover */
 .color-table-row:hover .table-cell .move-button,
 .color-table-row:hover .table-cell .cell-checkbox,
-.color-table-row:hover .actions .three-dot-button {
+.color-table-row:hover .table-cell .three-dot-button-main {
     opacity: 1;
     visibility: visible;
 }
@@ -118,10 +118,12 @@ input:focus {
 }
 
 /* Three-dot button */
-.three-dot-button {
+.three-dot-button,
+.three-dot-button-main {
     background: none;
     border: none;
-    font-size: 18px;
+    font-size: 24px;
+    font-weight: 700;
     cursor: pointer;
     padding: 5px;
     transition: color 0.3s ease;
@@ -155,76 +157,7 @@ input:focus {
     position: relative;
 }
 
-/* Drawer Styles (renamed) */
-.kzui-mcp-drawer {
-    position: absolute;
-    top: 0;
-    right: 30%;
-    width: 350px;
-    height: 500px;
-    background-color: #fff;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    transition: transform 0.3s ease;
-    transform: translateX(100%); /* Initially off-screen */
-}
 
-.kzui-mcp-drawer-open {
-    transform: translateX(0); /* Show drawer */
-}
-
-.kzui-mcp-drawer-content {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.kzui-mcp-drawer-input {
-    padding: 20px;
-}
-
-.kzui-mcp-drawer-input > div {
-    padding: 10px 0;
-    border-bottom: 2px solid #ccc;
-}
-
-.kzui-mcp-drawer-title input[type="text"] {
-    padding: 10px;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.kzui-mcp-color-input-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.kzui-mcp-drawer-actions {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    margin-top: 20px;
-    border-top: 2px solid #ccc;
-}
-
-.kzui-mcp-drawer-actions button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.kzui-mcp-drawer-actions button:first-child {
-    background-color: #f5f5f5;
-}
-
-.kzui-mcp-drawer-actions button:last-child {
-    background-color: #333;
-    color: white;
-}
 
 /* Add Button */
 .add-new-item {
@@ -381,3 +314,61 @@ input:focus {
 .modal-actions button:last-child:hover {
     background-color: #104bb5;
 }
+
+/* bottom popup */
+.bottom-popup {
+    width: 400px;
+    position: fixed;
+    bottom: 10%;
+    left: 60%;
+    transform: translateX(-60%);
+    right: 0;
+    background-color: #f0f0f0;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-popup button{
+        background-color: #156BED;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 3px;
+    
+}
+
+
+
+/* Group Table */
+.group-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+.group-table-cell{
+    width: 50%;
+    padding: 10px;
+    text-align: left;
+}
+
+.group-table-row{
+    width: 100%;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* Group Info */
+
+
+
+.group-title span {
+    font-size: 20px;
+    font-weight: 500;
+}
+
