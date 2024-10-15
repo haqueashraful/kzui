@@ -59,6 +59,9 @@ input:focus {
     transition: background-color 0.3s;
     cursor: pointer;
 }
+.kzui-table-cell input[type="text"] {
+    padding: 5px;
+}
 
 /* Initially hide move button, checkbox, and three-dot button */
 .kzui-table-cell .kzui-move-button,
@@ -227,8 +230,6 @@ label {
 
 .kzui-drawer input[type="color"] {
     padding: 5px;
-    /* width: ; */
-    /* display: block; */
     border: none;
     cursor: pointer;
 }
@@ -376,7 +377,14 @@ label {
 .kzui-group-table-cell{
     width: 50%;
     padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
     text-align: left;
+}
+.kzui-group-table-cell [type="text"]{
+    padding: 5px;
 }
 
 .kzui-group-table-row{

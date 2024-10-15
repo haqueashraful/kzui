@@ -241,11 +241,18 @@ const DataTable = () => {
                                 onChange={(e) => setAddingItem({ ...addingItem, title: e.target.value })}
                             />
                         </div>
-                        <div className='kzui-color-input'>
                             <label>Color</label>
+                        <div className='kzui-drawer-color-input'>
                             <input
                                 name='color'
                                 type="color"
+                                value={addingItem?.color || '#000000'}
+                                onChange={(e) => setAddingItem({ ...addingItem, color: e.target.value })}
+                            />
+                            <input
+                                type="text"
+                                name='color'
+                                placeholder="Item color"
                                 value={addingItem?.color || '#000000'}
                                 onChange={(e) => setAddingItem({ ...addingItem, color: e.target.value })}
                             />
@@ -283,9 +290,10 @@ const DataTable = () => {
                             <table className="kzui-group-table">
                                 <thead>
                                     <tr>
-                                        <th className="kzui-group-table-cell">Name</th>
-                                        <th className="kzui-group-table-cell">Value</th>
+                                        <th>Name</th>
+                                        <th>Value</th>
                                     </tr>
+                                    
                                 </thead>
                                 <tbody>
                                     {group.items.map(item => (
