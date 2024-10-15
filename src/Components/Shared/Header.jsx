@@ -10,7 +10,7 @@ const Header = () => {
                     <img src={logo} alt="" />
                 </li>
                 <li>
-                    <a href="/home">Welcome</a>
+                    <a href="#">Welcome</a>
                 </li>
                 <li>
                     <a href="#">Blocks</a>
