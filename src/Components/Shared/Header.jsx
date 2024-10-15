@@ -13,10 +13,10 @@ const Header = () => {
                     <a href="/home">Welcome</a>
                 </li>
                 <li>
-                    <a href="/about">Blocks</a>
+                    <a href="#">Blocks</a>
                 </li>
                 <li>
-                    <a href="/contact">Settings</a>
+                    <a href="#">Settings</a>
                 </li>
             </ul>
         </div>

@@ -228,6 +228,7 @@ const DataTable = () => {
                     </div>
                 </div>
 
+
                 {/* Drawer for adding new items */}
                 <div className={`kzui-drawer right ${showAddDrawer ? 'kzui-open' : ''}`}>
                     <div className="kzui-drawer-content">
@@ -265,6 +266,7 @@ const DataTable = () => {
                 </div>
             </div>
 
+
             <div className="kzui-groups">
                 {groupedItems.map((group) => (
                     <div key={group.id} className="kzui-group">
@@ -285,7 +287,6 @@ const DataTable = () => {
                             )}
                         </div>
                         <div className="kzui-group-items">
-
 
                             <table className="kzui-group-table">
                                 <thead>
@@ -316,11 +317,12 @@ const DataTable = () => {
                 ))}
             </div>
 
+
             {/* Modal for editing group name */}
             {showGroupModal && (
                 <div className="kzui-modal">
                     <div className="kzui-modal-content">
-                        <h2>Edit Group</h2>
+                        <h2>Rename Group</h2>
                         <input
                             type="text"
                             value={editingGroup?.title || ''}
