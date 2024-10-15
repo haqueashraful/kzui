@@ -11,6 +11,7 @@
     border-bottom: 1px solid rgb(221, 221, 223);
 }
 
+
 .kzui-mcp-header ul {
     display: flex;
     gap: 20px;
@@ -38,62 +39,62 @@ input:focus {
 }
 
 /* Table Container */
-.color-table-container {
+.kzui-color-table-container {
     width: 100%;
     margin: 0 auto;
 }
 
-.color-table {
+.kzui-color-table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.color-table th,
-.color-table td {
+.kzui-color-table th,
+.kzui-color-table td {
     padding: 10px;
     text-align: left;
 }
 
-.color-table-row {
+.kzui-color-table-row {
     transition: background-color 0.3s;
     cursor: pointer;
 }
 
 /* Initially hide move button, checkbox, and three-dot button */
-.table-cell .move-button,
-.table-cell .cell-checkbox,
-.table-cell .three-dot-button-main {
+.kzui-table-cell .kzui-move-button,
+.kzui-table-cell .kzui-cell-checkbox,
+.kzui-table-cell .kzui-three-dot-button-main {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 /* Show move button, checkbox, and three-dot button on hover */
-.color-table-row:hover .table-cell .move-button,
-.color-table-row:hover .table-cell .cell-checkbox,
-.color-table-row:hover .table-cell .three-dot-button-main {
+.kzui-color-table-row:hover .kzui-table-cell .kzui-move-button,
+.kzui-color-table-row:hover .kzui-table-cell .kzui-cell-checkbox,
+.kzui-color-table-row:hover .kzui-table-cell .kzui-three-dot-button-main {
     opacity: 1;
     visibility: visible;
 }
 
 /* Ensure checkbox remains visible when checked */
-.cell-checkbox:checked {
+.kzui-cell-checkbox:checked {
     opacity: 1 !important;
     visibility: visible !important;
 }
 
 /* Styling for table cells */
-.table-cell {
+.kzui-table-cell {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.cell-checkbox {
+.kzui-cell-checkbox {
     margin-right: 10px;
 }
 
-.move-button {
+.kzui-move-button {
     background: none;
     border: none;
     cursor: pointer;
@@ -103,23 +104,23 @@ input:focus {
     transition: color 0.3s ease;
 }
 
-.move-button:hover {
+.kzui-move-button:hover {
     color: #156bed;
 }
 
-.color-input-div {
+.kzui-color-input-div {
     display: flex;
 }
 
-.color-input input {
+.kzui-color-input input {
     width: 50px;
     border: none;
     border-radius: 4px;
 }
 
 /* Three-dot button */
-.three-dot-button,
-.three-dot-button-main {
+.kzui-three-dot-button,
+.kzui-three-dot-button-main {
     background: none;
     border: none;
     font-size: 24px;
@@ -129,12 +130,12 @@ input:focus {
     transition: color 0.3s ease;
 }
 
-.three-dot-button:hover {
+.kzui-three-dot-button:hover {
     color: #156bed;
 }
 
 /* Popup menu */
-.popup-menu {
+.kzui-popup-menu {
     position: absolute;
     background-color: #fff;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -144,23 +145,23 @@ input:focus {
     border-radius: 4px;
 }
 
-.popup-option {
+.kzui-popup-option {
     padding: 5px;
     cursor: pointer;
 }
 
-.popup-option:hover {
+.kzui-popup-option:hover {
     background-color: #f5f5f5;
 }
 
-.actions {
+.kzui-actions {
     position: relative;
 }
 
 
 
 /* Add Button */
-.add-new-item {
+.kzui-add-new-item {
     background: none;
     border: none;
     font-size: 18px;
@@ -168,58 +169,76 @@ input:focus {
 }
 
 
-/* MainContent.css */
+/* MainContent.kzui-css */
 
-.drawer {
+.kzui-drawer {
     position: fixed;
     top: 0;
-    right: -400px; /* Hide it off the screen initially */
+    right: -400px;
     width: 400px;
     height: 100%;
     background-color: #fff;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
-    transition: right 0.3s ease; /* Smooth slide-in effect */
+    transition: right 0.3s ease; 
     z-index: 1000;
 }
 
-.drawer.open {
-    right: 0; /* Slide in */
+.kzui-drawer.kzui-open {
+    right: 0;
 }
 
-.drawer-content {
+.kzui-drawer-content {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /* justify-content: ; */
     height: 100%;
 }
 
-.drawer h2 {
+.kzui-drawer h2 {
     margin-bottom: 20px;
 }
 
-.drawer input[type="text"] {
+.kzui-drawer input[type="text"] {
     padding: 10px;
     margin-bottom: 20px;
-    width: 100%;
+    /* width: 100%; */
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
 }
 
-.drawer input[type="color"] {
-    padding: 5px;
+.kzui-name-input input[type="text"] {
     width: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.kzui-drawer-color-input{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.kzui-drawer input[type="color"] {
+    padding: 5px;
+    /* width: ; */
+    /* display: block; */
     border: none;
     cursor: pointer;
 }
 
-.drawer-actions {
+.kzui-drawer-actions {
     display: flex;
     justify-content: space-between;
 }
 
-.drawer-actions button {
+.kzui-drawer-actions button {
     padding: 10px 20px;
     background-color: #007BFF;
     color: #fff;
@@ -229,27 +248,27 @@ input:focus {
     font-size: 16px;
 }
 
-.drawer-actions button:hover {
+.kzui-drawer-actions button:hover {
     background-color: #0056b3;
 }
 
-.drawer-actions button:last-child {
+.kzui-drawer-actions button:last-child {
     background-color: #6c757d;
 }
 
-.drawer-actions button:last-child:hover {
+.kzui-drawer-actions button:last-child:hover {
     background-color: #5a6268;
 }
 
 
 /* Modal Overlay */
-.modal-overlay {
+.kzui-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.5); /* Dim background */
+    background: rgba(0, 0, 0, 0.5); 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -257,7 +276,7 @@ input:focus {
 }
 
 /* Modal Content */
-.modal-content {
+.kzui-modal-content {
     background: white;
     padding: 20px;
     border-radius: 8px;
@@ -267,14 +286,14 @@ input:focus {
 }
 
 /* Modal Title */
-.modal-content h2 {
+.kzui-modal-content h2 {
     margin-top: 0;
-    font-size: 1.5rem;
+    font-size: 1.kzui-5rem;
     margin-bottom: 20px;
 }
 
 /* Modal Input Field */
-.modal-content input {
+.kzui-modal-content input {
     width: 100%;
     padding: 8px;
     margin-bottom: 20px;
@@ -284,14 +303,14 @@ input:focus {
 }
 
 /* Modal Actions (Buttons) */
-.modal-actions {
+.kzui-modal-actions {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
 }
 
 /* Modal Action Buttons */
-.modal-actions button {
+.kzui-modal-actions button {
     padding: 8px 16px;
     font-size: 1rem;
     border: none;
@@ -301,22 +320,22 @@ input:focus {
 }
 
 /* Cancel Button */
-.modal-actions button:first-child {
+.kzui-modal-actions button:first-child {
     background-color: #f5f5f5;
 }
 
 /* Save Button */
-.modal-actions button:last-child {
+.kzui-modal-actions button:last-child {
     background-color: #156BED;
     color: white;
 }
 
-.modal-actions button:last-child:hover {
+.kzui-modal-actions button:last-child:hover {
     background-color: #104bb5;
 }
 
 /* bottom popup */
-.bottom-popup {
+.kzui-bottom-popup {
     width: 400px;
     position: fixed;
     bottom: 10%;
@@ -330,7 +349,7 @@ input:focus {
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.bottom-popup button{
+.kzui-bottom-popup button{
         background-color: #156BED;
         color: white;
         border: none;
@@ -343,19 +362,24 @@ input:focus {
 
 
 /* Group Table */
-.group-table {
+
+.kzui-group-header{
+    display: flex;
+    align-items: center;
+}
+.kzui-group-table {
     width: 100%;
     border-collapse: collapse;
 }
 
 
-.group-table-cell{
+.kzui-group-table-cell{
     width: 50%;
     padding: 10px;
     text-align: left;
 }
 
-.group-table-row{
+.kzui-group-table-row{
     width: 100%;
     color: #333;
     display: flex;
@@ -367,7 +391,7 @@ input:focus {
 
 
 
-.group-title span {
+.kzui-group-title span {
     font-size: 20px;
     font-weight: 500;
 }

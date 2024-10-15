@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './MainContent.css'; // Import your custom CSS styles
+import './MainContent.css'; 
 import { arrayMoveImmutable } from 'array-move';
 
 const DataTable = () => {
@@ -11,10 +11,11 @@ const DataTable = () => {
     ]);
 
     const [checkedItems, setCheckedItems] = useState([]);
-    const [showItemPopup, setShowItemPopup] = useState(null); // Popup for item-side three dots
-    const [showGroupPopup, setShowGroupPopup] = useState(null); // Popup for group-side three dots
+    const [showItemPopup, setShowItemPopup] = useState(null);
+    const [showGroupPopup, setShowGroupPopup] = useState(null); 
     const [showDrawer, setShowDrawer] = useState(false);
     const [editingItem, setEditingItem] = useState(null);
+    const [addingItem, setAddingItem] = useState(null);
     const [isAdding, setIsAdding] = useState(false);
     const [groupedItems, setGroupedItems] = useState([]);
     const [editingGroup, setEditingGroup] = useState(null);
@@ -37,13 +38,13 @@ const DataTable = () => {
     };
 
     const handleItemThreeDotClick = (index) => {
-        setShowItemPopup(showItemPopup === index ? null : index); // Toggle item popup
-        setShowGroupPopup(null); // Close group popup if open
+        setShowItemPopup(showItemPopup === index ? null : index); 
+        setShowGroupPopup(null); 
     };
 
     const handleGroupThreeDotClick = (groupId) => {
-        setShowGroupPopup(showGroupPopup === groupId ? null : groupId); // Toggle group popup
-        setShowItemPopup(null); // Close item popup if open
+        setShowGroupPopup(showGroupPopup === groupId ? null : groupId);
+        setShowItemPopup(null); 
     };
 
     const handleClosePopup = () => {
@@ -80,13 +81,13 @@ const DataTable = () => {
     };
 
     const handleAddNewItem = () => {
-        setEditingItem({ id: data.length + 1, title: '', color: '#000000' });
+        setAddingItem({ id: data.length + 1, title: '', color: '#000000' });
         setIsAdding(true);
         setShowAddDrawer(true);
     };
 
     const handleSaveNewItem = () => {
-        const updatedData = [...data, editingItem];
+        const updatedData = [...data, addingItem];
         setData(updatedData);
         setShowAddDrawer(false);
         setIsAdding(false);
@@ -102,20 +103,13 @@ const DataTable = () => {
     };
 
     const handleSaveGroupName = () => {
-
-        console.log(editingGroup, groupedItems);
-
-
         const updatedGroups = groupedItems.map(group =>
-            group.id === editingGroup.index ? { ...group, title: editingGroup.title } : group
+            group.id === editingGroup.id ? { ...group, title: editingGroup.title } : group
         );
         setGroupedItems(updatedGroups);
         setShowGroupModal(false);
         setShowGroupPopup(null);
     };
-
-
-
 
     const handleDuplicateGroup = (groupId) => {
         const groupToDuplicate = groupedItems.find(group => group.id === groupId);
@@ -137,9 +131,9 @@ const DataTable = () => {
     };
 
     return (
-        <div >
-            <div className="color-table-container">
-                <table className="color-table">
+        <div>
+            <div className="kzui-color-table-container">
+                <table className="kzui-color-table">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -148,17 +142,17 @@ const DataTable = () => {
                     </thead>
                     <tbody>
                         {data.map((item, index) => (
-                            <tr key={item.id} className="color-table-row">
+                            <tr key={item.id} className="kzui-color-table-row">
                                 <td>
-                                    <div className="table-cell">
+                                    <div className="kzui-table-cell">
                                         <button
-                                            className="move-button"
+                                            className="kzui-move-button"
                                             onClick={() => moveRow(index, index - 1)}
                                         >
                                             ⬆
                                         </button>
                                         <button
-                                            className="move-button"
+                                            className="kzui-move-button"
                                             onClick={() => moveRow(index, index + 1)}
                                         >
                                             ⬇
@@ -167,31 +161,30 @@ const DataTable = () => {
                                             type="checkbox"
                                             checked={checkedItems.includes(item.id)}
                                             onChange={() => handleCheckboxChange(item.id)}
-                                            className="cell-checkbox"
+                                            className="kzui-cell-checkbox"
                                         />
                                         {item.title}
                                     </div>
                                 </td>
                                 <td>
-                                    <div className="table-cell">
+                                    <div className="kzui-table-cell">
                                         <input type="color" value={item.color} />
                                         <input type="text" value={item.color} />
-                                        {/* {item.color} */}
                                     </div>
                                 </td>
                                 <td>
-                                    <div className="table-cell">
+                                    <div className="kzui-table-cell">
                                         <button
-                                            className="three-dot-button-main"
+                                            className="kzui-three-dot-button-main"
                                             onClick={() => handleItemThreeDotClick(index)}
                                         >
                                             &#8285;
                                         </button>
                                         {showItemPopup === index && (
-                                            <div className="popup-menu">
-                                                <div className="popup-option" onClick={() => handleEdit(index)}>Edit</div>
-                                                <div className="popup-option" onClick={() => handleDuplicate(index)}>Duplicate</div>
-                                                <div className="popup-option" onClick={() => handleDelete(index)}>Delete</div>
+                                            <div className="kzui-popup-menu">
+                                                <div className="kzui-popup-option" onClick={() => handleEdit(index)}>Edit</div>
+                                                <div className="kzui-popup-option" onClick={() => handleDuplicate(index)}>Duplicate</div>
+                                                <div className="kzui-popup-option" onClick={() => handleDelete(index)}>Delete</div>
                                             </div>
                                         )}
                                     </div>
@@ -201,93 +194,109 @@ const DataTable = () => {
                     </tbody>
                 </table>
 
+                <button className='kzui-add-new-item' onClick={handleAddNewItem}>+ Add color</button>
+
 
                 {/* Drawer for editing items */}
-                <div className={`drawer right ${showDrawer ? 'open' : ''}`}>
-                    <div className="drawer-content">
-                        <input
-                            type="text"
-                            value={editingItem?.title || ''}
-                            onChange={(e) => setEditingItem({ ...editingItem, title: e.target.value, id: editingItem.length + 1 })}
-                        />
-                        <div>
+                <div className={`kzui-drawer right ${showDrawer ? 'kzui-open' : ''}`}>
+                    <div className="kzui-drawer-content">
+                        <div className='kzui-name-input'>
+                            <label>Name</label>
+                            <input
+                                type="text"
+                                value={editingItem?.title || ''}
+                                onChange={(e) => setEditingItem({ ...editingItem, title: e.target.value })}
+                            />
+                        </div>
+                        <label>Color</label>
+                        <div className="kzui-drawer-color-input">
                             <input
                                 type="color"
                                 value={editingItem?.color || '#000000'}
                                 onChange={(e) => setEditingItem({ ...editingItem, color: e.target.value })}
                             />
-                            <input type="text" value={editingItem?.color || '#000000'} />
+                            <input
+                                type="text"
+                                value={editingItem?.color || '#000000'}
+                                onChange={(e) => setEditingItem({ ...editingItem, color: e.target.value })}
+                            />
                         </div>
-                        <div className="drawer-actions">
+                        <div className="kzui-drawer-actions">
                             <button onClick={handleSave}>Save</button>
                             <button onClick={() => setShowDrawer(false)}>Cancel</button>
                         </div>
                     </div>
                 </div>
 
-            </div>
-
-
-
-            {/* Drawer for adding new items */}
-            <div className={`drawer right ${showAddDrawer ? 'open' : ''}`}>
-                <div className="drawer-content">
-                    <input
-                        type="text"
-                        placeholder="Item name"
-                        value={editingItem?.title || ''}
-                        onChange={(e) => setEditingItem({ ...editingItem, title: e.target.value })}
-                    />
-                    <input
-                        type="color"
-                        value={editingItem?.color || '#000000'}
-                        onChange={(e) => setEditingItem({ ...editingItem, color: e.target.value })}
-                    />
-                    <div className="drawer-actions">
-                        <button onClick={handleSaveNewItem}>Add Item</button>
-                        <button onClick={() => setShowAddDrawer(false)}>Cancel</button>
+                {/* Drawer for adding new items */}
+                <div className={`kzui-drawer right ${showAddDrawer ? 'kzui-open' : ''}`}>
+                    <div className="kzui-drawer-content">
+                        <div className='kzui-name-input'>
+                            <label>Name</label>
+                            <input
+                                type="text"
+                                name='title'
+                                placeholder="Item name"
+                                value={addingItem?.title || ''}
+                                onChange={(e) => setAddingItem({ ...addingItem, title: e.target.value })}
+                            />
+                        </div>
+                        <div className='kzui-color-input'>
+                            <label>Color</label>
+                            <input
+                                name='color'
+                                type="color"
+                                value={addingItem?.color || '#000000'}
+                                onChange={(e) => setAddingItem({ ...addingItem, color: e.target.value })}
+                            />
+                        </div>
+                        <div className="kzui-drawer-actions">
+                            <button onClick={handleSaveNewItem}>Add</button>
+                            <button onClick={() => setShowAddDrawer(false)}>Cancel</button>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            {/* Grouped Items */}
-            {groupedItems.length > 0 && (
-                <div className="group-container">
-                    {groupedItems.map((group) => (
-                        <div key={group.id} className="group">
-                            <div className="group-title">
-                                <span>{group.title}</span>
-                                <button
-                                    className="three-dot-button"
-                                    onClick={() => handleGroupThreeDotClick(group.id)}
-                                >
-                                    &#8285;
-                                </button>
-                                {showGroupPopup === group.id && (
-                                    <div className="popup-menu">
-                                        <div className="popup-option" onClick={() => setShowGroupModal(true)}>Edit</div>
-                                        <div className="popup-option" onClick={() => handleDuplicateGroup(group.id)}>Duplicate</div>
-                                        <div className="popup-option" onClick={() => handleDeleteGroup(group.id)}>Delete</div>
-                                    </div>
-                                )}
-                            </div>
-                            <table className="group-table">
+            <div className="kzui-groups">
+                {groupedItems.map((group) => (
+                    <div key={group.id} className="kzui-group">
+                        <div className="kzui-group-header">
+                            <h3>{group.title}</h3>
+                            <button
+                                className="kzui-three-dot-button-main"
+                                onClick={() => handleGroupThreeDotClick(group.id)}
+                            >
+                                &#8285;
+                            </button>
+                            {showGroupPopup === group.id && (
+                                <div className="kzui-popup-menu">
+                                    <div className="kzui-popup-option" onClick={() => setEditingGroup(group) || setShowGroupModal(true)}>Edit</div>
+                                    <div className="kzui-popup-option" onClick={() => handleDuplicateGroup(group.id)}>Duplicate</div>
+                                    <div className="kzui-popup-option" onClick={() => handleDeleteGroup(group.id)}>Delete</div>
+                                </div>
+                            )}
+                        </div>
+                        <div className="kzui-group-items">
+
+
+                            <table className="kzui-group-table">
                                 <thead>
                                     <tr>
-                                        <th className="group-table-cell">Name</th>
-                                        <th className="group-table-cell">Value</th>
+                                        <th className="kzui-group-table-cell">Name</th>
+                                        <th className="kzui-group-table-cell">Value</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {group.items.map(item => (
                                         <tr key={item.id}>
-                                            <td className="group-table-cell">
+                                            <td className="kzui-group-table-cell">
                                                 <span>{item.title}</span>
                                             </td>
-                                            <td className="group-table-cell">
-                                                <div>
+                                            <td>
+                                                <div  className="kzui-group-table-cell">
                                                     <input type="color" value={item.color} readOnly />
-                                                    <input type="text" value={item.color} readOnly className="color-input" />
+                                                    <input type="text" value={item.color} readOnly/>
                                                 </div>
                                             </td>
                                         </tr>
@@ -295,21 +304,21 @@ const DataTable = () => {
                                 </tbody>
                             </table>
                         </div>
-                    ))}
-                </div>
-            )}
-
+                    </div>
+                ))}
+            </div>
 
             {/* Modal for editing group name */}
             {showGroupModal && (
-                <div className="modal">
-                    <div className="modal-content">
+                <div className="kzui-modal">
+                    <div className="kzui-modal-content">
+                        <h2>Edit Group</h2>
                         <input
                             type="text"
                             value={editingGroup?.title || ''}
                             onChange={(e) => setEditingGroup({ ...editingGroup, title: e.target.value })}
                         />
-                        <div className="modal-actions">
+                        <div className="kzui-modal-actions">
                             <button onClick={handleSaveGroupName}>Save</button>
                             <button onClick={() => setShowGroupModal(false)}>Cancel</button>
                         </div>
@@ -317,15 +326,15 @@ const DataTable = () => {
                 </div>
             )}
 
+
             {/* Bottom popup when items are checked */}
             {checkedItems.length > 0 && (
-                <div className="bottom-popup">
+                <div className="kzui-bottom-popup">
                     <span>{checkedItems.length} items selected</span>
                     <button onClick={handleGroupItems}>Group</button>
                 </div>
             )}
 
-            <button className='add-new-item' onClick={handleAddNewItem}>+ Add color</button>
         </div>
     );
 };
